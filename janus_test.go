@@ -6,7 +6,7 @@ import (
 
 func Test_Connect(t *testing.T) {
 
-	client, err := Connect("ws://39.106.248.166:8188/")
+	client, err := Connect("wss://10.0.0.37:8189/")
 	if err != nil {
 		t.Fail()
 		return

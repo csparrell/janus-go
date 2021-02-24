@@ -10,7 +10,7 @@ import (
 	"os"
 	"sync"
 	"time"
-
+	"crypto/tls"
 	"github.com/gorilla/websocket"
 	"github.com/rs/xid"
 )
@@ -51,7 +51,7 @@ func generateTransactionId() xid.ID {
 // Connect initiates a webscoket connection with the Janus Gateway
 func Connect(wsURL string) (*Gateway, error) {
 	websocket.DefaultDialer.Subprotocols = []string{"janus-protocol"}
-
+	websocket.DefaultDialer.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	conn, _, err := websocket.DefaultDialer.Dial(wsURL, nil)
 
 	if err != nil {
